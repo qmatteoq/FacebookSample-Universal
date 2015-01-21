@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="29949MatteoPagani.MediasetSample" Publisher="CN=E49EFE37-9F4A-4570-85EB-A6E45D192595" Version="1.1.0.0" />
-  <mp:PhoneIdentity PhoneProductId="b193cc82-45f3-4f59-9fc0-1545f1e38d4d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="29949MatteoPagani.FacebookTest" Publisher="CN=E49EFE37-9F4A-4570-85EB-A6E45D192595" Version="1.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="4b3ed1ee-4e74-4108-bba5-7eb3bcb7c1e5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Mediaset Sample</DisplayName>
+    <DisplayName>Facebook Test</DisplayName>
     <PublisherDisplayName>Matteo Pagani</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WebLogin.WindowsPhone.App">
-      <m3:VisualElements DisplayName="Mediaset Sample" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="WebLogin.WindowsPhone" ForegroundText="light" BackgroundColor="transparent">
+      <m3:VisualElements DisplayName="Facebook Test" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="WebLogin.WindowsPhone" ForegroundText="light" BackgroundColor="transparent">
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen.png" />

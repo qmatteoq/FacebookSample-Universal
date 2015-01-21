@@ -184,13 +184,13 @@
     <Language Code="vi-vn" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>29949MatteoPagani.MediasetSample</MainPackageIdentityName>
+    <MainPackageIdentityName>29949MatteoPagani.FacebookTest</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Mediaset Sample</ReservedName>
+      <ReservedName>Facebook Test</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
-    <MainPackageIdentityName>29949MatteoPagani.FacebookTest</MainPackageIdentityName>
+    <MainPackageIdentityName>29949MatteoPagani.MediasetSample</MainPackageIdentityName>
     <MainPackageIdentityName>29949MatteoPagani.413413FE244C</MainPackageIdentityName>
     <MainPackageIdentityName>29949MatteoPagani.qmatteoq.com</MainPackageIdentityName>
     <MainPackageIdentityName>29949MatteoPagani.QwerteeShirts</MainPackageIdentityName>
@@ -201,7 +201,6 @@
     <MainPackageIdentityName>29949MatteoPagani.RicettePugliesi</MainPackageIdentityName>
     <MainPackageIdentityName>29949MatteoPagani.RicetteToscane</MainPackageIdentityName>
     <MainPackageIdentityName>29949MatteoPagani.Romaturistica</MainPackageIdentityName>
-    <MainPackageIdentityName>29949MatteoPagani.WNSTest</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=f599ec7b-505a-44ec-bd49-e7bc2d54c3b0" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=b677b5fa-7c2a-4b6e-ae58-e107ab3e9c9e" />
 </StoreAssociation>

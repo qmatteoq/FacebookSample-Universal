@@ -17,7 +17,7 @@ namespace WebLogin
         private async Task Login()
         {
             //Client ID of the Facebook App (retrieved from the Facebook Developers portal)
-            var clientId = "your app id";
+            var clientId = "411817365649267";
             //Required permissions
             var scope = "public_profile, email";
 
