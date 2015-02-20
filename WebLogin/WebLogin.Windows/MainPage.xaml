@@ -7,10 +7,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="120, 30, 0, 0">
+    <Grid>
+        <WebView x:Name="RequestView" Visibility="Collapsed" Width="800" Height="480" HorizontalAlignment="Center" VerticalAlignment="Center" NavigationCompleted="RequestView_OnNavigationCompleted" />
+        <StackPanel Margin="120, 30, 0, 0" x:Name="AppContent">
             <Button Content="Login" Click="OnLoginClicked" />
-            <TextBlock x:Name="MyName" Style="{StaticResource HeaderTextBlockStyle}" />
+            <TextBlock x:Name="MyName" Style="{StaticResource HeaderTextBlockStyle}" Margin="0, 30, 0, 0" />
+            <Button Content="Invite friends" Click="OnInviteFriendsClicked" x:Name="InviteFriends" Visibility="Collapsed" Margin="0, 30, 0, 0" />
+                        
+            <TextBlock Text="Invited friends" Style="{StaticResource HeaderTextBlockStyle}" Visibility="Collapsed" x:Name="FriendsHeader" Margin="0, 50, 0, 0" />
+            <ListView x:Name="Friends" Margin="0, 20, 0, 0" Visibility="Collapsed">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=FullName}" Style="{StaticResource BodyTextBlockStyle}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
         </StackPanel>
     </Grid>
 </Page>

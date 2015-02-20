@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Security.Authentication.Web;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Facebook;
+using WebLogin.Entities;
 
 namespace WebLogin
 {
@@ -13,11 +19,11 @@ namespace WebLogin
     {
         public string AccessToken;
         public DateTime TokenExpiry;
+        public string ClientId = "411817365649267";
 
         private async Task Login()
         {
             //Client ID of the Facebook App (retrieved from the Facebook Developers portal)
-            var clientId = "411817365649267";
             //Required permissions
             var scope = "public_profile, email";
 
@@ -25,7 +31,7 @@ namespace WebLogin
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
-                client_id = clientId,
+                client_id = ClientId,
                 redirect_uri = redirectUri,
                 response_type = "token",
                 scope = scope
@@ -76,6 +82,8 @@ namespace WebLogin
 
                     await ShowUserInfo();
 
+                    InviteFriends.Visibility = Visibility.Visible;
+
                     break;
                 //operation aborted by the user
                 case WebAuthenticationStatus.UserCancel:
@@ -91,12 +99,68 @@ namespace WebLogin
         {
             FacebookClient client = new FacebookClient(AccessToken);
             dynamic user = await client.GetTaskAsync("me");
-            MyName.Text = user.name;
+            MyName.Text = string.Format("I'm {0}", user.name);
         }
 
         private async void OnLoginClicked(object sender, RoutedEventArgs e)
         {
             await Login();
         }
+
+        private void OnInviteFriendsClicked(object sender, RoutedEventArgs e)
+        {
+            AppContent.Visibility = Visibility.Collapsed;
+            FacebookClient client = new FacebookClient(AccessToken);
+            dynamic parameters = new ExpandoObject();
+            parameters.app_id = ClientId;
+            parameters.message = "Invite your friends";
+            parameters.title = "Invite friends";
+            parameters.redirect_uri = "https://wp.qmatteoq.com/";
+
+            Uri dialogUrl = client.GetDialogUrl("apprequests", parameters);
+
+            RequestView.Visibility = Visibility.Visible;
+            RequestView.Navigate(dialogUrl);
+        }
+
+private async void RequestView_OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+{
+    if (args.Uri.DnsSafeHost == "wp.qmatteoq.com")
+    {
+        sender.Visibility = Visibility.Collapsed;
+        AppContent.Visibility = Visibility.Visible;
+
+        FacebookClient client = new FacebookClient(AccessToken);
+        dynamic result = client.ParseDialogCallbackUrl(args.Uri);
+
+        if (result.error_code == null)
+        {
+            var items = (IDictionary<string, object>) result;
+
+            ObservableCollection<FacebookUser> invitedFriends = new ObservableCollection<FacebookUser>();
+
+            foreach (KeyValuePair<string, object> value in items)
+            {
+                if (value.Key != "request")
+                {
+                    string query = string.Format("/{0}", value.Value);
+                    dynamic user = await client.GetTaskAsync(query);
+                    FacebookUser facebookUser = new FacebookUser();
+                    facebookUser.FullName = user.name;
+                    invitedFriends.Add(facebookUser);
+                }
+            }
+
+            Friends.Visibility = Visibility.Visible;
+            FriendsHeader.Visibility = Visibility.Visible;
+            Friends.ItemsSource = invitedFriends;
+        }
+        else
+        {
+            MessageDialog dialog = new MessageDialog("The user has canceled the operation");
+            await dialog.ShowAsync();
+        }
+    }
+}
     }
 }

@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ContinuationManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\FacebookUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs" />
   </ItemGroup>
 </Project>

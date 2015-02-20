@@ -9,9 +9,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel Margin="12, 20, 0, 0">
+        <WebView x:Name="RequestView" Visibility="Collapsed" Width="400" Height="800" NavigationCompleted="RequestView_OnNavigationCompleted"/>
+        <StackPanel Margin="12, 20, 0, 0" x:Name="AppContent">
             <Button Content="Login" Click="OnLoginClicked" />
-            <TextBlock x:Name="MyName" Style="{StaticResource HeaderTextBlockStyle}" />
+            <TextBlock x:Name="MyName" Style="{StaticResource SubheaderTextBlockStyle}" />
+            <Button Content="Invite friends" Click="OnInviteFriendsClicked" x:Name="InviteFriends" Visibility="Collapsed" />
+
+            <TextBlock Text="Invited friends" Style="{StaticResource HeaderTextBlockStyle}" x:Name="FriendsHeader" Visibility="Collapsed"/>
+            <ListView x:Name="Friends" Margin="0, 20, 0, 0" Visibility="Collapsed">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=FullName}" Style="{StaticResource BodyTextBlockStyle}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>
